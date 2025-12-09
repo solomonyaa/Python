@@ -21,5 +21,5 @@ while True:
     elif response.startswith('n'):
         maxNum = middle
     else:
-
         continue
+
