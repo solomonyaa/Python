@@ -3,8 +3,7 @@ from io import StringIO
 
 
 def create_enc_key():
-    abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-           'w', 'x', 'y', 'z']
+    abc = [chr(c) for c in range(ord('a'), ord('z') + 1)]
 
     shuffled_abc = random.sample(abc, len(abc))
 
@@ -44,9 +43,9 @@ def enc_dec_text(text, key_dict):
 def print_key_dict(key_dict):
     for key, value in key_dict.items():
         if ord(key) % 2 == 1:
-            print(key, "->", value, end="\t")
+            print(key, "➜", value, end="\t")
         else:
-            print(key, "->", value, end="\n")
+            print(key, "➜", value, end="\n")
 
 
 def test_all(text):
@@ -69,5 +68,5 @@ def test_all(text):
     print("=" * 50)
 
 
-sample_text = "Can you read this?"
-test_all(sample_text)
+input_text = input("Text to encrypt: ")
+test_all(input_text)
