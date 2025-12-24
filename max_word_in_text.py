@@ -55,6 +55,7 @@ def main(path):
         print("No words found in the text.")
         return
 
+    print(words_dict)
     max_word = list(words_dict.keys())[0]
     max_occurrences = words_dict[max_word]
     print(f"The most common word is: \"{max_word}\" with {max_occurrences} occurrences.")
