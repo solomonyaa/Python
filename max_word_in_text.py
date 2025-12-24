@@ -1,4 +1,3 @@
-# Working with Files
 from io import StringIO
 
 
@@ -81,3 +80,4 @@ def main(path):
 
 book_path = r"C:\Users\Solomon\Desktop\DevSecOps Course\Python\alice_in_wonderland.txt"
 main(book_path)
+
