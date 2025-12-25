@@ -45,25 +45,34 @@ def print_dict(dictionary):
         i += 1
 
 
-def main(path):
+def read_file(path):
     try:
         with open(path, mode='r', encoding='utf-8') as text_file:
-            print(type(text_file))
             text_str = text_file.read()
+            return text_str
     except FileNotFoundError:
         print(f"Error: File not found at '{path}'")
-        return
+        return None
     except OSError as e:
         print(f"Error: Cannot open file - {e}")
-        return
+        return None
     except Exception as e:
         print(f"Unexpected error: {e}")
-        return
+        return None
 
-    print(type(text_str))
 
-    print("Chars =", len(text_str))
-    print("Bytes =", len(text_str.encode('utf-8')))
+def main(path):
+    text_str = read_file(path)
+    if not text_str: return
+
+    start = text_str.index("Title: ")
+    end = text_str.find("\n", start)
+    print(text_str[start:end])
+    start = text_str.index("Author: ")
+    end = text_str.find("\n", start)
+    print(text_str[start:end])
+
+    print(f"Chars = {len(text_str)}, Bytes = {len(text_str.encode('utf-8'))}")
 
     cleaned_text = clean_text(text_str)
     words_dict = to_dict(cleaned_text)
@@ -78,6 +87,5 @@ def main(path):
     print_dict(words_dict)
 
 
-book_path = r"C:\Users\Solomon\Desktop\DevSecOps Course\Python\alice_in_wonderland.txt"
+book_path = r"C:\Users\solom\PyCharmMiscProject\alice_in_wonderland.txt"
 main(book_path)
-
