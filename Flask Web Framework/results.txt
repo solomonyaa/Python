@@ -1,0 +1,18 @@
+Main page: status 200 - Hello, World!
+
+Testing Name Endpoints:
+Save name: status 200 - {"name": "Dave"}
+Get name: status 200 - Dave
+
+Testing User Endpoints:
+Get all users: status 200 - [{'id': 101, 'name': 'Alice'}, {'id': 102, 'name': 'Bob'}]
+Get user 101: status 200 - {'name': 'Alice', 'phone': '1234567'}
+Create user: status 201 - {'id': 103}
+Get all users: status 200 - [{'id': 101, 'name': 'Alice'}, {'id': 102, 'name': 'Bob'}, {'id': 103, 'name': 'Chris'}]
+Update user 101: status 200 - {'101': 'updated'}
+Get all users: status 200 - [{'id': 101, 'name': 'David'}, {'id': 102, 'name': 'Bob'}, {'id': 103, 'name': 'Chris'}]
+Delete user 101: status 200 - {'101': 'deleted'}
+Get all users: status 200 - [{'id': 102, 'name': 'Bob'}, {'id': 103, 'name': 'Chris'}]
+Get user 103: status 200 - {'name': 'Chris', 'phone': '9876543'}
+
+Process finished with exit code 0
