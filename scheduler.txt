@@ -1,0 +1,72 @@
+PROJECT BRIEF: FOCUSFLOW SCHEDULER API
+Project: Python Backend Lab
+
+Duration: 4–8 Hours
+
+Focus: Flask, JSON APIs, and Data Structures (heapq)
+
+1. OVERVIEW
+You are building the scheduling engine for a high-performance productivity app.
+This is a HEADLESS API (JSON only) that manages a single-track meeting room.
+Your goal is to ensure meetings are stored efficiently and no two meetings ever overlap.
+
+2. THE DATA STRUCTURE: Why heapq?
+To keep the schedule organized, we use a Min-Heap instead of a standard list.
+
+Efficiency: Inserting a meeting is O(log n).
+
+Instant Access: Finding the earliest meeting is O(1) at index [0].
+
+Sorting: We store data as a tuple: (start_time, end_time, title).
+
+Logic: Python's heap module automatically sorts by the first element (start_time).
+
+3. API ENDPOINTS
+Your Flask application must implement the following:
+
+A. POST /schedule
+
+Input: {"title": "Sync", "start": 1400, "duration": 60}
+
+Logic:
+
+Calculate end_time (start + duration).
+
+Loop through the heap to check for overlaps.
+
+If no conflict, push to heap.
+
+Status Codes: 201 Created (Success) or 400 Bad Request (Conflict).
+
+B. GET /next
+
+Logic: Return the meeting at index [0] without removing it.
+
+Status Codes: 200 OK or 404 Not Found (if empty).
+
+C. POST /complete
+
+Logic: Use heapq.heappop() to remove the earliest meeting.
+
+Status Codes: 200 OK.
+
+4. CONFLICT GUARD (Business Logic)
+A meeting must be REJECTED if the requested time slot is occupied. Use this mathematical rule for your logic:
+
+Conflict exists if: (NewStart < ExistingEnd) AND (NewEnd > ExistingStart)
+
+5. EXAMPLE TEST COMMAND
+Test your API using CURL in your terminal:
+
+curl -X POST http://localhost:5000/schedule
+
+-H "Content-Type: application/json"
+
+-d '{"title": "Workshop", "start": 1300, "duration": 90}'
+
+6. FINAL DELIVERABLES
+A functional Flask app (app.py).
+
+Proper error handling for empty queues and time conflicts.
+
+All responses must be in JSON format.
